@@ -1,4 +1,4 @@
-package com.lukaskusik.parselivedata
+package com.lukaskusik.parseandroidx
 
 import org.junit.Test
 

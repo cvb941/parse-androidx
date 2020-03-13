@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep public class com.lukaskusik.parselivedata.ParseLiveData
+-keep public class com.lukaskusik.parseandroidx.livedata.ParseLiveData

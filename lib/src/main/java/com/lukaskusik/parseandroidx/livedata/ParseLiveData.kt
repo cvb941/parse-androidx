@@ -1,4 +1,4 @@
-package com.lukaskusik.parselivedata
+package com.lukaskusik.parseandroidx.livedata
 
 import androidx.lifecycle.LiveData
 import com.parse.ParseObject
