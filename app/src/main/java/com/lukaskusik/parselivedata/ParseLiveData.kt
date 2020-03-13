@@ -11,13 +11,12 @@ import com.parse.livequery.SubscriptionHandling
  *  LiveData object upon a parse subscribeQuery, using LiveQuery
  *
  */
-abstract class ParseLiveData<T, P : ParseObject>(
+class ParseLiveData<T : ParseObject>(
+    private val subscribeQuery: ParseQuery<T>,
     private val parseClient: ParseLiveQueryClient = ParseLiveQueryClient.Factory.getClient()
 ) : LiveData<T>() {
 
-    abstract val subscribeQuery: ParseQuery<P>
-
-    lateinit var subscriptionHandling: SubscriptionHandling<P>
+    lateinit var subscriptionHandling: SubscriptionHandling<T>
 
     override fun onActive() {
         // Subscribe to subscribeQuery
@@ -37,12 +36,7 @@ abstract class ParseLiveData<T, P : ParseObject>(
         parseClient.unsubscribe(subscribeQuery, subscriptionHandling)
     }
 
-    /**
-     * Function used for loading the data from parse on subscribeQuery change
-     */
-    abstract fun getData(): T
-
     private fun refreshLiveData() {
-        postValue(getData())
+        postValue(subscribeQuery.first)
     }
 }
