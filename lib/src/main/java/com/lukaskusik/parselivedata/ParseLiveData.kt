@@ -16,7 +16,7 @@ class ParseLiveData<T : ParseObject>(
     private val parseClient: ParseLiveQueryClient = ParseLiveQueryClient.Factory.getClient()
 ) : LiveData<T>() {
 
-    lateinit var subscriptionHandling: SubscriptionHandling<T>
+    private lateinit var subscriptionHandling: SubscriptionHandling<T>
 
     override fun onActive() {
         // Subscribe to subscribeQuery
@@ -37,6 +37,8 @@ class ParseLiveData<T : ParseObject>(
     }
 
     private fun refreshLiveData() {
-        postValue(subscribeQuery.first)
+        subscribeQuery.getFirstInBackground { `object`, e ->
+            postValue(`object`)
+        }
     }
 }
