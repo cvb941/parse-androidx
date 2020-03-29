@@ -25,7 +25,19 @@ val fruitsQuery = ParseQuery.getQuery(Fruit::class.java)
 val config = PagedList.Config.Builder().setPageSize(20).build()
 val sourceFactory = ParseDataSourceFactory(fruitsQuery)
 val items = LivePagedListBuilder(sourceFactory, config).build()
+
 items.observe(viewLifecycleOwner, Observer {
     (rvFruits.adapter as FruitAdapter).submitList(it) // Submit PagedList to PagedListAdapter
 })
+```
+
+## Installation
+
+```gradle
+repositories {
+    maven { url "https://jitpack.io" } // 1. Add JitPack repository
+}
+
+// 2. Add this library
+implementation 'com.github.cvb941:parse-androidx:v1.0'
 ```
