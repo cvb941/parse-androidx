@@ -1,4 +1,4 @@
-package com.lukaskusik.parseandroidx
+package net.kusik.parseandroidx
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.lukaskusik.parselivedata", appContext.packageName)
+        assertEquals("net.kusik.parselivedata", appContext.packageName)
     }
 }
