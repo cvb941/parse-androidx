@@ -53,8 +53,8 @@ class ParsePagingSource<T : ParseObject>(
 
             return LoadResult.Page(
                 data = posts,
-                prevKey = null, // Only paging forward.
-                nextKey = query.skip + posts.size
+                prevKey = null,
+                nextKey = if (posts.size < params.loadSize) null else query.skip + posts.size
             )
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an
