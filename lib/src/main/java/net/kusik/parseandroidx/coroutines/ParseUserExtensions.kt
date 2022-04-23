@@ -24,3 +24,13 @@ suspend fun ParseAnonymousUtils.logInSuspend() = suspendCoroutine<ParseUser> { c
         }
     }
 }
+
+suspend fun ParseUser.signUpSuspend() = suspendCoroutine<Unit> { cont ->
+    this.signUpInBackground { exception ->
+        if (exception != null) {
+            cont.resumeWithException(exception)
+        } else {
+            cont.resume(Unit)
+        }
+    }
+}
