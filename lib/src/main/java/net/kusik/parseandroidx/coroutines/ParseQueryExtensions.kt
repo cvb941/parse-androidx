@@ -26,3 +26,13 @@ suspend fun <T : ParseObject> ParseQuery<T>.getFirstSuspend() = suspendCoroutine
         }
     }
 }
+
+suspend fun <T : ParseObject> ParseQuery<T>.getSuspend(id: String) = suspendCoroutine<T> {
+    this.getInBackground(id) { `object`, e ->
+        if (e == null) {
+            it.resume(`object`)
+        } else {
+            it.resumeWithException(e)
+        }
+    }
+}
